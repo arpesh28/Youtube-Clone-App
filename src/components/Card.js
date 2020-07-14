@@ -2,13 +2,12 @@ import React from 'react';
 import { StyleSheet, Text, View, Image, Dimensions } from 'react-native';
 import { FontAwesome5 } from '@expo/vector-icons';
 
-export default function Card() {
+export default function Card(props) {
   return (
     <View style={styles.card}>
       <Image
         source={{
-          uri:
-            'https://images.unsplash.com/photo-1544441892-4284006e19ca?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1351&q=80',
+          uri: `https://i.ytimg.com/vi/${props.videoId}/hqdefault.jpg`,
         }}
         style={styles.image}
       />
@@ -17,12 +16,11 @@ export default function Card() {
           <FontAwesome5 name='user' style={styles.dp} />
         </View>
         <View style={styles.texts}>
-          <Text style={styles.cardTitle} ellipsizeMode='tail' numberOfLines={1}>
-            React-Native tutorial
+          <Text style={styles.cardTitle} ellipsizeMode='tail' numberOfLines={2}>
+            {props.title}
           </Text>
-          <Text style={styles.cardDesc} ellipsizeMode='tail' numberOfLines={2}>
-            This tutorial introduces you into the react-native world and let you
-            explore.
+          <Text style={styles.cardDesc} ellipsizeMode='tail' numberOfLines={1}>
+            {props.channel}
           </Text>
         </View>
       </View>

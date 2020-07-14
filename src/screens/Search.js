@@ -3,7 +3,6 @@ import {
   StyleSheet,
   Text,
   View,
-  ScrollView,
   TextInput,
   FlatList,
   ActivityIndicator,
@@ -27,13 +26,15 @@ const SearchScreen = ({ navigation }) => {
   const fetchData = () => {
     setLoading(true);
     fetch(
-      `https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=10&q=${value}&type=video&key=AIzaSyALzk8VHiL2HLvYxQ8DBFE8WFWTOxtrWf8`
+      // `https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=10&q=${value}&type=video&key=AIzaSyALzk8VHiL2HLvYxQ8DBFE8WFWTOxtrWf8`
+      `https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=10&q=${value}$type=video&key=AIzaSyDqmU_tktBZVrA_4Pn8EixVbUWD44iUiXE`
     )
       .then((res) => res.json())
       .then((data) => {
         setLoading(false);
         // setMiniCard(data.items);
         dispatch({ type: 'add', payload: data.items });
+        console.log(data.items);
       });
   };
 

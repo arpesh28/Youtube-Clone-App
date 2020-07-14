@@ -1,9 +1,8 @@
-const initState = [];
+const initialState = [];
 
-export const reducer = (state = initState, action) => {
-  switch (action.type) {
-    case 'add': {
-      return action.payload;
-    }
+export const reducer = (state = initialState, action) => {
+  if (action.type == 'add') {
+    return action.payload;
   }
+  return state;
 };
