@@ -1,30 +1,56 @@
 import React from 'react';
-import { StyleSheet, Text, View, Image, Dimensions } from 'react-native';
+import {
+  StyleSheet,
+  Text,
+  View,
+  Image,
+  Dimensions,
+  TouchableOpacity,
+} from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 import { FontAwesome5 } from '@expo/vector-icons';
 
 export default function Card(props) {
+  const navigation = useNavigation();
   return (
-    <View style={styles.card}>
-      <Image
-        source={{
-          uri: `https://i.ytimg.com/vi/${props.videoId}/hqdefault.jpg`,
-        }}
-        style={styles.image}
-      />
-      <View style={styles.cardTexts}>
-        <View style={styles.dpWrapper}>
-          <FontAwesome5 name='user' style={styles.dp} />
-        </View>
-        <View style={styles.texts}>
-          <Text style={styles.cardTitle} ellipsizeMode='tail' numberOfLines={2}>
-            {props.title}
-          </Text>
-          <Text style={styles.cardDesc} ellipsizeMode='tail' numberOfLines={1}>
-            {props.channel}
-          </Text>
+    <TouchableOpacity
+      onPress={() =>
+        navigation.navigate('videoPlayer', {
+          videoId: props.videoId,
+          title: props.title,
+        })
+      }
+    >
+      <View style={styles.card}>
+        <Image
+          source={{
+            uri: `https://i.ytimg.com/vi/${props.videoId}/hqdefault.jpg`,
+          }}
+          style={styles.image}
+        />
+        <View style={styles.cardTexts}>
+          <View style={styles.dpWrapper}>
+            <FontAwesome5 name='user' style={styles.dp} />
+          </View>
+          <View style={styles.texts}>
+            <Text
+              style={styles.cardTitle}
+              ellipsizeMode='tail'
+              numberOfLines={2}
+            >
+              {props.title}
+            </Text>
+            <Text
+              style={styles.cardDesc}
+              ellipsizeMode='tail'
+              numberOfLines={1}
+            >
+              {props.channel}
+            </Text>
+          </View>
         </View>
       </View>
-    </View>
+    </TouchableOpacity>
   );
 }
 
